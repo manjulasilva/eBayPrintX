@@ -161,12 +161,6 @@ def createRTF_BuyersNameAddress_A4_DNB_House_Address(pBuyers_Name, pAddress_Line
     return iStatus  
   
 
-
-
-
-
-
-
 def createRTF_BuyersNameAddress_A4_Express_House_Address(pBuyers_Name, pAddress_Line1, pAddress_Line2):
     print('Start generate RTF : A4 Express House Address ..............................')
     
@@ -196,13 +190,6 @@ def createRTF_BuyersNameAddress_A4_Express_House_Address(pBuyers_Name, pAddress_
         show_message_UnableToCreateOutputFile()
         
     return iStatus  
-
-
-
-
-
-
-
 
 
 def createRTF_BuyersNameAddress_A4_PostagePaid_DL_House_Address(pBuyers_Name, pAddress_Line1, pAddress_Line2):
@@ -235,3 +222,40 @@ def createRTF_BuyersNameAddress_A4_PostagePaid_DL_House_Address(pBuyers_Name, pA
         show_message_UnableToCreateOutputFile()
         
     return iStatus    
+
+
+
+def createRTF_BuyersNameAddress_ParcelPost_SMALL_House_Address(pBuyers_Name, pAddress_Line1, pAddress_Line2):
+    print('Start generate RTF : DL House Address ..............................')
+    
+    fileToSearch = 'TemplateRTFs/Parcel_Post_SMALL.rtf'
+    txt_Name_To_Search = "@Buyer_Name"
+    txt_Add1_To_Search = "@Address_Line1"
+    txt_Add2_To_Search = "@Address_Line2"
+    
+    
+    # Read in the file
+    with open(fileToSearch, 'r') as file :
+        filedata = file.read()
+        
+    # Replace the target string
+    filedata = filedata.replace(txt_Name_To_Search, pBuyers_Name)
+    filedata = filedata.replace(txt_Add1_To_Search, pAddress_Line1)
+    filedata = filedata.replace(txt_Add2_To_Search, pAddress_Line2)
+    
+    # Write the file out again
+    iStatus = -1
+    try:
+        with open('Output_file.rtf', 'w') as file:
+            file.write(filedata)
+        show_message_OutputFileCreated()
+        iStatus = 0
+        print('Output_file.rtf  successfully created for Buyer ' + pBuyers_Name + '444')    
+    except:
+        show_message_UnableToCreateOutputFile()
+        
+    return iStatus    
+
+
+
+

@@ -8,7 +8,7 @@ import sys
 from PyQt5.QtWidgets import QApplication, QWidget, QGridLayout, QLabel, QRadioButton, QPushButton, QTextEdit, QComboBox,QFrame,QSplitter
 from PyQt5.QtGui import QIcon, QPixmap, QFont
 from eBay_Address_Functions import pasteClipboard_To_InputAddressBox, getAddressType, getBuyersNameAndAddress_in_Simple_House_Address_Format, getBuyersNameAndAddress_in_PO_BOX_Address_Format, getBuyersNameAndAddress_in_Complex_Address_Format, getBuyersNameAndAddress_in_CnC_Format, cmdCopyNewAddress,doGoogleAddressSearch
-from eBay_RTF_Functions import open_RTF_Output_File_Preview, delete_RTF_Output_File,show_message_Complex_Address_Warning, createRTF_BuyersNameAddress_DL_House_Address, createRTF_BuyersNameAddress_C5_House_Address, createRTF_BuyersNameAddress_A4_DNB_House_Address, createRTF_BuyersNameAddress_A4_Express_House_Address, createRTF_BuyersNameAddress_A4_PostagePaid_DL_House_Address
+from eBay_RTF_Functions import open_RTF_Output_File_Preview, delete_RTF_Output_File,show_message_Complex_Address_Warning, createRTF_BuyersNameAddress_DL_House_Address, createRTF_BuyersNameAddress_C5_House_Address, createRTF_BuyersNameAddress_A4_DNB_House_Address, createRTF_BuyersNameAddress_A4_Express_House_Address, createRTF_BuyersNameAddress_A4_PostagePaid_DL_House_Address,createRTF_BuyersNameAddress_ParcelPost_SMALL_House_Address
 from eBay_Automated_ByWin32ComClient import do_Auto_GoogleAddressSearch, print_OutputFile_GrayScale
 
 
@@ -49,6 +49,8 @@ def cmdGenerate_RTF_Output_File():
         iReturnCode = createRTF_BuyersNameAddress_A4_Express_House_Address(gBuyer_Name, gAddress_Line1, gAddress_Line2)
     elif  gEnvelope_Type == 'A4_PostagePaid_DL':
         iReturnCode = createRTF_BuyersNameAddress_A4_PostagePaid_DL_House_Address(gBuyer_Name, gAddress_Line1, gAddress_Line2)
+    elif gEnvelope_Type == 'ParcelPost_SMALL':
+        iReturnCode = createRTF_BuyersNameAddress_ParcelPost_SMALL_House_Address(gBuyer_Name, gAddress_Line1, gAddress_Line2)
     
     if iReturnCode == 0:
         pixmap_GenerateRTF_Done = QPixmap('images/Green_Tick.png')
@@ -227,6 +229,7 @@ radio_01_C5 = QRadioButton("C5 Letter")
 radio_01_A4 = QRadioButton("A4 with    \'DO NOT BEND PLEASE\'")
 radio_01_A4_Express = QRadioButton("A4 Express")
 radio_01_A4_PostagePaid_DL = QRadioButton("A4 Postage Paid DL")
+radio_01_ParcelPost_SMALL = QRadioButton("Parcel Post (SMALL)")
 
 
 radio_01_DL.toggled.connect(lambda:cmdChangeRadioImage('DL'))
@@ -234,6 +237,7 @@ radio_01_C5.toggled.connect(lambda:cmdChangeRadioImage('C5'))
 radio_01_A4.toggled.connect(lambda:cmdChangeRadioImage('A4_DONOTBEND'))
 radio_01_A4_Express.toggled.connect(lambda:cmdChangeRadioImage('A4_Express'))
 radio_01_A4_PostagePaid_DL.toggled.connect(lambda:cmdChangeRadioImage('A4_PostagePaid_DL'))
+radio_01_ParcelPost_SMALL.toggled.connect(lambda:cmdChangeRadioImage('ParcelPost_SMALL'))
 
 
 cmb_Address_Option = QComboBox()
@@ -268,6 +272,7 @@ gridTop.addWidget(radio_01_C5,4,1)
 gridTop.addWidget(radio_01_A4,5,1)
 gridTop.addWidget(radio_01_A4_Express,6,1)
 gridTop.addWidget(radio_01_A4_PostagePaid_DL,7,1)
+gridTop.addWidget(radio_01_ParcelPost_SMALL,8,1)
 
 gridTop.addWidget(label_TopLine_Image,1,1,1,6)
 gridTop.addWidget(label_Envelope_Size_Image,2,1)
