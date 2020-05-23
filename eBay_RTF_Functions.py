@@ -67,6 +67,16 @@ def show_message_Complex_Address_Warning():
     retval = msg.exec_()
 
 
+def show_message_NotInFormat_Address_Warning():    
+    msg = QMessageBox()
+    msg.setIcon(QMessageBox.Information)
+    msg.setText("Given addresss is not in correct address format. May be ebay tag is missing.")
+    msg.setInformativeText("Please review and make necessary changes manually and re-attempt")
+    msg.setWindowTitle("Complex Address")
+    msg.setStandardButtons(QMessageBox.Ok )
+    #msg.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
+    retval = msg.exec_()
+
 def createRTF_BuyersNameAddress_DL_House_Address(pBuyers_Name, pAddress_Line1, pAddress_Line2):
     print('Start generate RTF : DL House Address ..............................')
     

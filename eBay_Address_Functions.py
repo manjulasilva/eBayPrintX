@@ -93,6 +93,9 @@ def doGoogleAddressSearch(vAddressToSearch):
 
 def getAddressType(pInputAddress):
     arrAddress = pInputAddress.splitlines()
+    iNumberOfLines = len(arrAddress)
+    print('address line count :' + str(iNumberOfLines))
+    print('address line count :' )
     vAddressLine1 = arrAddress[2] # get 2nd address line this for Simple, Complex or PO Box types
     vAddressLineCnC1 = arrAddress[1] # get 2nd line just in case Click and collect type
     vAddressLineCnC2 = arrAddress[2] # get 2nd line just in case Click and collect type
@@ -123,8 +126,9 @@ def getAddressType(pInputAddress):
     iLocation7 = vAddressLineCnC1.find(str7)
     iLocation8 = vAddressLineCnC2.find(str8)
     
-    
-    if iLocation3 != -1:
+    if iNumberOfLines < 4:
+        vAddressType = 'AddressNotInRightFormat'
+    elif iLocation3 != -1:
         if iLocation1 != -1 and iLocation2 != -1:
             if iLocation1 < iLocation2:
                 vAddressType = 'PO_BOX'

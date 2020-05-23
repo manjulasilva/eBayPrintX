@@ -8,7 +8,7 @@ import sys
 from PyQt5.QtWidgets import QApplication, QWidget, QGridLayout, QLabel, QRadioButton, QPushButton, QTextEdit, QComboBox,QFrame,QSplitter
 from PyQt5.QtGui import QIcon, QPixmap, QFont
 from eBay_Address_Functions import pasteClipboard_To_InputAddressBox, getAddressType, getBuyersNameAndAddress_in_Simple_House_Address_Format, getBuyersNameAndAddress_in_PO_BOX_Address_Format, getBuyersNameAndAddress_in_Complex_Address_Format, getBuyersNameAndAddress_in_CnC_Format, cmdCopyNewAddress,doGoogleAddressSearch
-from eBay_RTF_Functions import open_RTF_Output_File_Preview, delete_RTF_Output_File,show_message_Complex_Address_Warning, createRTF_BuyersNameAddress_DL_House_Address, createRTF_BuyersNameAddress_C5_House_Address, createRTF_BuyersNameAddress_A4_DNB_House_Address, createRTF_BuyersNameAddress_A4_Express_House_Address, createRTF_BuyersNameAddress_A4_PostagePaid_DL_House_Address,createRTF_BuyersNameAddress_ParcelPost_SMALL_House_Address
+from eBay_RTF_Functions import open_RTF_Output_File_Preview, delete_RTF_Output_File,show_message_Complex_Address_Warning, show_message_NotInFormat_Address_Warning,  createRTF_BuyersNameAddress_DL_House_Address, createRTF_BuyersNameAddress_C5_House_Address, createRTF_BuyersNameAddress_A4_DNB_House_Address, createRTF_BuyersNameAddress_A4_Express_House_Address, createRTF_BuyersNameAddress_A4_PostagePaid_DL_House_Address,createRTF_BuyersNameAddress_ParcelPost_SMALL_House_Address
 from eBay_Automated_ByWin32ComClient import do_Auto_GoogleAddressSearch, print_OutputFile_GrayScale
 
 
@@ -82,6 +82,8 @@ def cmdGet_FormattedAddress():
     elif strAddressType == 'Complex_Address_ShopOrHighRise':
         strErrorReturned, gBuyer_Name, gAddress_Line1, gAddress_Line2 = getBuyersNameAndAddress_in_Complex_Address_Format(txt_Address_Box_Input.toPlainText())
         show_message_Complex_Address_Warning()
+    elif strAddressType ==  'AddressNotInRightFormat':
+        show_message_NotInFormat_Address_Warning();
         
         
     txt_Address_Box_Output.setText(strErrorReturned)
@@ -112,13 +114,22 @@ def setApplication_State_INIT():
     
     radio_01_DL.setAutoExclusive(False)
     radio_01_C5.setAutoExclusive(False)
-    radio_01_A4.setAutoExclusive(False)    
+    radio_01_A4.setAutoExclusive(False) 
+    radio_01_A4_Express.setAutoExclusive(False)
+    radio_01_A4_PostagePaid_DL.setAutoExclusive(False)
+    radio_01_ParcelPost_SMALL.setAutoExclusive(False)   
     radio_01_DL.setChecked(False)
     radio_01_C5.setChecked(False)
     radio_01_A4.setChecked(False)
+    radio_01_A4_Express.setChecked(False)
+    radio_01_A4_PostagePaid_DL.setChecked(False)
+    radio_01_ParcelPost_SMALL.setChecked(False)
     radio_01_DL.setAutoExclusive(True)
     radio_01_C5.setAutoExclusive(True)
     radio_01_A4.setAutoExclusive(True)
+    radio_01_A4_Express.setAutoExclusive(True)
+    radio_01_A4_PostagePaid_DL.setAutoExclusive(True)
+    radio_01_ParcelPost_SMALL.setAutoExclusive(True)
     
     
     label_GenerateRTF_Done_Image.clear()

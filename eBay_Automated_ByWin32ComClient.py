@@ -41,6 +41,9 @@ def print_OutputFile_GrayScale(vEnvelope_Type):
     elif vEnvelope_Type == 'A4_PostagePaid_DL':
         print('A4_PostagePaid_DL received')
         print_OutputFile_GrayScale_C5()  #'A4_PostagePaid_DL' also works like C5
+    elif vEnvelope_Type == 'ParcelPost_SMALL':
+        print('ParcelPost_SMALL received')
+        print_OutputFile_GrayScale_C5()  #'A4_PostagePaid_DL' also works like C5
     
     print(" .......... Print GRAY SCALE DL/C5/ branched out..........")
 
