@@ -7,7 +7,8 @@ Created on 8 Mar 2020
 import win32com.client
 from win32com.client import Dispatch
 import time
-import clipboard
+import pyperclip
+#import clipboard
 #from win32com.client import Dispatch
 
 
@@ -18,7 +19,7 @@ def do_Auto_GoogleAddressSearch(vAddressToSearch):
         v_shell.Run("iexplore.exe")
         time.sleep(5)
         #v_shell.SendKeys(vAddressToSearch,0)
-        clipboard.copy(vAddressToSearch)
+        pyperclip.copy(vAddressToSearch)
         v_shell.SendKeys("^v",0)
         time.sleep(2)
         v_shell.SendKeys("{ENTER}",0)

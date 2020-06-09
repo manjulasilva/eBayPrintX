@@ -1,0 +1,22 @@
+(1)
+Install PIP
+( see https://phoenixnap.com/kb/install-pip-windows)
+download get-pip.py 
+come to this folder from command line
+do following command
+python get-pip.py
+
+
+(2)
+Install QT5
+pip install pyqt5
+
+
+
+(3) Install win32 client
+pip install pywin32
+
+
+(4) clipbioard
+pip install pyperclip
+
